@@ -1,42 +1,30 @@
 pipeline {
     agent any
 
-    // environment {
-    //     KUBECONFIG = 'kubeconfig-credential-id'
-    // }
-
     stages {
         stage('Checkout') {
             steps {
                 git branch:'master',url:'https://github.com/skykesavanke/Cluster_Creation.git'
             }
         }
-        // stage('Configuration of kubeconfig file'){
-        //     steps{
-        //             withCredentials([file(credentialsId: "${kube-config}", variable: 'KUBECONFIG_FILE')]) {
-        //             script {
-        //                 env.KUBECONFIG = "${env.WORKSPACE}/${KUBECONFIG_FILE}" 
-        //             }
-        //             sh 'echo $KUBECONFIG'
-        //         }
-
-        //     }
-        // }
+       
 
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    //  env.KUBECONFIG = 'kubeconfig'
-                    bat 'aws eks update-kubeconfig --region us-east-1 --name new-cluster '
+                    
+                    bat 'aws eks update-kubeconfig --region us-east-1 --name new-cluster'
 
                    
                     bat 'kubectl version --client'
 
                    
-                   bat 'kubectl apply -f ./Deploy/deployment.yaml'
+                    bat 'kubectl apply -f ./Deploy/deployment.yaml'
 
                   
                     bat 'kubectl apply -f ./Deploy/service.yaml'
+
+                    bat 'kubectl get services'
                 }
             }
         }

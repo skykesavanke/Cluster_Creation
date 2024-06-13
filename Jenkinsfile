@@ -29,7 +29,7 @@ pipeline{
                  bat 'C:\\Users\\kesavank\\Terraform\\terraform init'
         }
     }
-        stage('Terrafrm run'){
+        stage('Terraform run'){
            steps{
              script{
                 if(params.Action=='plan'){
@@ -39,13 +39,30 @@ pipeline{
                     if(params.ApplyApproval){
                          bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
                     }
+                    else{
+                        echo "Apply Approval required"
+                    }
                 }
                 else if(params.Action=='destroy'){
                     if(params.DestroyApproval){
                         bat 'C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve'
                     }
+                    else {
+                        echo "Destroy approval required"
+                    }
                 }
-                else if (params.Action == 'build-push') {
+               
+                else {
+                        error "Invalid action: ${params.Action}"
+                    }
+                
+             }
+           }
+        }
+         stage('Image Build'){
+           steps{
+             script{
+                if (params.Action == 'build-push') {
                      script {
                             def imageRepoName = "${env.IMAGE_REPO_NAME}"
                             def awsRegion = "${env.AWS_REGION}"
@@ -64,16 +81,17 @@ pipeline{
                        """
                     } 
                     }
-                    else {
-                        error "Invalid action: ${params.Action}"
-                    }
-                
-             }
-           }
-        }
-       
+             }  
     }
 }
+        stage('Trigger Deployment Pipeline'){
+            steps{
+                build job : 'Deployment_of_cluster'
+            }
+        }
+    }
+}
+    
 
 
 
