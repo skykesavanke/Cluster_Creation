@@ -25,7 +25,7 @@ pipeline {
                 script {
                      env.KUBECONFIG = 'kubeconfig'
                    
-                    bat 'kubectl version --client'
+                    bat 'C:\\Users\\kesavank\\kubectl version --client'
 
                    
                    bat 'kubectl apply -f deployment.yaml'
