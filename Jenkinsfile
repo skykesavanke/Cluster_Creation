@@ -62,11 +62,10 @@ pipeline{
          stage('Image Build'){
            steps{
              script{
-                if (params.Action == 'build-push') {
-                     script {
-                            def imageRepoName = "${env.IMAGE_REPO_NAME}"
-                            def awsRegion = "${env.AWS_REGION}"
-                            def ecrUrl = "211125415675.dkr.ecr.${awsRegion}.amazonaws.com"
+                
+                    def imageRepoName = "${env.IMAGE_REPO_NAME}"
+                    def awsRegion = "${env.AWS_REGION}"
+                    def ecrUrl = "211125415675.dkr.ecr.${awsRegion}.amazonaws.com"
 
                         
                         bat """
@@ -80,7 +79,7 @@ pipeline{
                                 docker push  %ECR_URL%/%IMAGE_REPO_NAME%:latest
                        """
                     } 
-                    }
+                    
              }  
     }
 }
