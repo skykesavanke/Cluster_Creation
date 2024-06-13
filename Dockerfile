@@ -8,7 +8,7 @@ COPY index.css /usr/share/nginx/files/index.css
 
 COPY index.js /usr/share/nginx/files/index.js
 
-WORKDIR /files/index.html
+WORKDIR /usr/share/nginx/html
 
 
 EXPOSE 80
