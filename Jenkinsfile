@@ -82,7 +82,7 @@ pipeline{
                     
              }  
     }
-}
+
         stage('Trigger Deployment Pipeline'){
             steps{
                 build job : 'Deployment_of_cluster'
@@ -90,6 +90,7 @@ pipeline{
         }
     }
 }
+
     
 
 
