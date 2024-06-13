@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: website
-        image: 211125415675.dkr.ecr.ap-south-1.amazonaws.com/webapp1:latest
+        image: 211125415675.dkr.ecr.us-east-1.amazonaws.com/new-cluster-repo:latest
         ports:
         - containerPort: 80
