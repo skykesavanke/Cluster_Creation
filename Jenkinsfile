@@ -18,7 +18,7 @@ pipeline{
         stage('Checkout Code'){
             steps{
                 script{
-                     git branch: 'main',url:'https://github.com/skykesavanke/Docker_Kubenetes.git'
+                     git branch: 'master',url:'https://github.com/skykesavanke/Cluster_Creation.git'
                 }
                
         }
@@ -71,13 +71,7 @@ pipeline{
              }
            }
         }
-        stage('Build another pipeline'){
-            steps{
-                script{
-                    build job :'Terraform_EKS_2'
-                }
-            }
-        }
+       
     }
 }
 
