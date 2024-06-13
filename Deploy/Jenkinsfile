@@ -31,7 +31,7 @@ pipeline {
                     bat 'kubectl version --client'
 
                    
-                   bat 'kubectl apply -f ./Deploy/deployment.yaml'
+                   bat 'kubectl apply -f ./Deploy/deployment.yaml --validate=false'
 
                   
                     bat 'kubectl apply -f service.yaml'
