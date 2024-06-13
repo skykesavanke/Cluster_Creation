@@ -13,8 +13,11 @@ pipeline {
         }
         stage('Configuration of kubeconfig file'){
             steps{
-                    withCredentials([file(credentialsId: "${KUBECONFIG}", variable: 'kube-config')]) {
-                    sh 'cp $kube-config kubeconfig'
+                    withCredentials([file(credentialsId: "${KUBECONFIG}", variable: 'KUBECONFIG_FILE')]) {
+                    script {
+                        env.KUBECONFIG = "${env.WORKSPACE}/${KUBECONFIG_FILE}" 
+                    }
+                    sh 'echo $KUBECONFIG'
                 }
 
             }
