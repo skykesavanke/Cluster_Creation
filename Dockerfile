@@ -1,6 +1,6 @@
-FROM nginx:stable-alpine
+FROM nginx:latest
 
-WORKDIR  /files
+WORKDIR  /files/index.html
 
 COPY ./index.html /usr/share/nginx/files/index.html
 
