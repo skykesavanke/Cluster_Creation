@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        KUBECONFIG = kubeconfig-credential-id
+        KUBECONFIG = 'kubeconfig-credential-id'
     }
 
     stages {
