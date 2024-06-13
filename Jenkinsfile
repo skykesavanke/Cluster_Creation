@@ -73,8 +73,8 @@ pipeline{
                                 set AWS_REGION=${awsRegion}
                                 set ECR_URL=${ecrUrl}
 
-                                docker build -t  %IMAGE_REPO_NAME%:latest .
                                 aws ecr get-login-password --region %AWS_REGION% | docker login --username AWS --password-stdin  %ECR_URL%
+                                docker build -t  %IMAGE_REPO_NAME% .
                                 docker tag %IMAGE_REPO_NAME%:latest %ECR_URL%/%IMAGE_REPO_NAME%:latest
                                 docker push  %ECR_URL%/%IMAGE_REPO_NAME%:latest
                        """
