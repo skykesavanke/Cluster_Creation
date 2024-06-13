@@ -25,13 +25,13 @@ pipeline {
                 script {
                      env.KUBECONFIG = 'kubeconfig'
                    
-                    sh 'kubectl version --client'
+                    bat 'kubectl version --client'
 
                    
-                    sh 'kubectl apply -f deployment.yaml'
+                   bat 'kubectl apply -f deployment.yaml'
 
                   
-                    sh 'kubectl apply -f service.yaml'
+                    bat 'kubectl apply -f service.yaml'
                 }
             }
         }
