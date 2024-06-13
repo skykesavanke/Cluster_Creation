@@ -1,5 +1,7 @@
 FROM nginx:stable-alpine
 
+WORKDIR  /files
+
 COPY ./index.html /usr/share/nginx/files/index.html
 
 
